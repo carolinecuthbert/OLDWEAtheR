@@ -14,11 +14,13 @@ class TripItem {
     var location: String
     var date: String
     var occasion: String
+    var listItems: [ListItem]
     
-    init(title: String, location: String, date: String, occasion: String) {
+    init(title: String, location: String, date: String, occasion: String, listItems: [ListItem]) {
         self.title = title
         self.location = location
         self.date = date
         self.occasion = occasion
+        self.listItems = listItems
     }
 }

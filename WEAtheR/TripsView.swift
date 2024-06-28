@@ -29,7 +29,9 @@ struct TripsView: View {
                 Spacer()
                 List {
                     ForEach(trips) { tripItem in
-                        Text(tripItem.title)
+                        NavigationLink(destination: ListView(/*tripItem: tripItem*/)) {
+                            Text(tripItem.title)
+                        }
                     }
                     .onDelete(perform: deleteToDo)
                 }

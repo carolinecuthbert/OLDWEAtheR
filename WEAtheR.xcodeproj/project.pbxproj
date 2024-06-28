@@ -20,6 +20,7 @@
 		826C5A802C2E51E800D66ABF /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826C5A7F2C2E51E800D66ABF /* LocationViewModel.swift */; };
 		826C5A822C2E51F500D66ABF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826C5A812C2E51F500D66ABF /* LocationManager.swift */; };
 		826C5A842C2E520400D66ABF /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826C5A832C2E520400D66ABF /* WeatherService.swift */; };
+		82720A792C2E67DF008EC0F7 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82720A782C2E67DF008EC0F7 /* ListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		826C5A7F2C2E51E800D66ABF /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		826C5A812C2E51F500D66ABF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		826C5A832C2E520400D66ABF /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		82720A782C2E67DF008EC0F7 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				826C5A732C2E519000D66ABF /* DailyView.swift */,
 				826C5A752C2E519F00D66ABF /* GameView.swift */,
 				826C5A772C2E51AE00D66ABF /* ListView.swift */,
+				82720A782C2E67DF008EC0F7 /* ListItem.swift */,
 				826C5A792C2E51BC00D66ABF /* TripsView.swift */,
 				826C5A7B2C2E51CB00D66ABF /* CreateView.swift */,
 				826C5A7D2C2E51D900D66ABF /* TripItem.swift */,
@@ -164,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82720A792C2E67DF008EC0F7 /* ListItem.swift in Sources */,
 				826C5A742C2E519000D66ABF /* DailyView.swift in Sources */,
 				826C5A682C2E511100D66ABF /* ContentView.swift in Sources */,
 				826C5A842C2E520400D66ABF /* WeatherService.swift in Sources */,

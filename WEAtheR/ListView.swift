@@ -1,4 +1,103 @@
-// LIST VERSION
+import SwiftUI
+import SwiftData
+
+struct ListView: View {
+    @Bindable var tripItem: TripItem
+    @Environment(\.modelContext) var modelContext
+    @State private var newItemName: String = ""
+    @State private var newQuantity: String = "1"
+
+    var body: some View {
+        VStack {
+            TextField("Add new item", text: $newItemName)
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Quantity", text: $newQuantity)
+                .keyboardType(.numberPad)
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Button(action: addItem) {
+                Text("Add Item")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
+            HStack {
+                Text("Item")
+                    .font(.headline)
+                Spacer()
+                Text("Quantity")
+                    .font(.headline)
+            }
+            .padding()
+            List {
+                ForEach(tripItem.listItems) { listItem in
+                    VStack(spacing: 0) {
+                        HStack {
+                            Button(action: {
+                                toggleChecked(listItem: listItem)
+                            }) {
+                                if (listItem.isChecked) {
+                                    Image(systemName: "checkmark.square")
+                                } else {
+                                    Image(systemName: "square")
+                                }
+                            }
+                            Text(listItem.name)
+                            Spacer()
+                            Rectangle()
+                                .fill(Color.gray)
+                                .frame(width: 1)
+                            Text("\(listItem.quantity)")
+                        }
+                        .padding(.vertical, 8)
+                        Divider().background(Color.gray)
+                    }
+                }
+                .onDelete(perform: deleteItems)
+            }
+            .listStyle(PlainListStyle())
+        }
+        .navigationTitle(tripItem.title)
+        .padding()
+    }
+
+    func addItem() {
+        guard let quantity = Int(newQuantity) else { return }
+        let newListItem = ListItem(name: newItemName, quantity: quantity, isChecked: false)
+        tripItem.listItems.append(newListItem)
+        modelContext.insert(newListItem)
+        newItemName = ""
+        newQuantity = "1"
+    }
+
+    func toggleChecked(listItem: ListItem) {
+        listItem.isChecked.toggle()
+    }
+
+    func deleteItems(at offsets: IndexSet) {
+        for offset in offsets {
+            let listItem = tripItem.listItems[offset]
+            tripItem.listItems.remove(at: offset)
+            modelContext.delete(listItem)
+        }
+    }
+}
+
+#Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: TripItem.self, ListItem.self, configurations: config)
+    let sampleTripItem = TripItem(title: "Sample Trip", location: "Sample Location", date: "2024-07-01", occasion: "Casual", listItems: [ListItem(name: "", quantity: 0, isChecked: false)])
+    let sampleListItem1 = ListItem(name: "Coat", quantity: 5, isChecked: false)
+    let sampleListItem2 = ListItem(name: "T-shirt", quantity: 3, isChecked: false)
+    sampleTripItem.listItems.append(contentsOf: [sampleListItem1, sampleListItem2])
+    return ListView(tripItem: sampleTripItem)
+        .modelContainer(container)
+}
+
+    
+/*// LIST VERSION
 
 import SwiftUI
 struct Items: Identifiable {
@@ -85,3 +184,4 @@ struct ListView_Previews: PreviewProvider {
         ListView()
     }
 }
+*/
