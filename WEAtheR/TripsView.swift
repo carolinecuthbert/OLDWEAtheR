@@ -20,7 +20,7 @@ struct TripsView: View {
                         .font(.system(size: 40))
                         .fontWeight(.bold)
                     Spacer()
-                    NavigationLink(destination: CreateView(tripItem: TripItem(title: "", location: "", date: "", occasion: ""))) {
+                    NavigationLink(destination: CreateView(tripItem: TripItem(title: "", location: "", date: "", occasion: "", listItems: [ListItem(name: "", quantity: 0, isChecked: false)]))) {
                         Text("+")
                             .font(.system(size: 50))
                     }
@@ -29,8 +29,13 @@ struct TripsView: View {
                 Spacer()
                 List {
                     ForEach(trips) { tripItem in
-                        NavigationLink(destination: ListView(/*tripItem: tripItem*/)) {
+                        NavigationLink(destination: ListView(tripItem: tripItem)) {
                             Text(tripItem.title)
+                                .fontWeight(.bold)
+                                .font(.system(size: 25.0))
+                            Text(" \(tripItem.location)")
+                                .font(.system(size: 15.0))
+                                .italic()
                         }
                     }
                     .onDelete(perform: deleteToDo)

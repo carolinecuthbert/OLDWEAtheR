@@ -167,7 +167,7 @@ struct CreateView: View {
         }
     }
     func addTrip() {
-        let trip = TripItem(title: tripItem.title, location: tripItem.location, date: tripItem.date, occasion: tripItem.occasion)
+        let trip = TripItem(title: tripItem.title, location: tripItem.location, date: tripItem.date, occasion: tripItem.occasion, listItems: [ListItem(name: "", quantity: 0, isChecked: false)])
         modelContext.insert(trip)
     }
 }
@@ -176,7 +176,7 @@ struct CreateView: View {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: TripItem.self, configurations: config)
 
-    let trip = TripItem(title: "", location: "", date: "", occasion: "")
+    let trip = TripItem(title: "", location: "", date: "", occasion: "", listItems: [ListItem(name: "", quantity: 0, isChecked: false)])
     return CreateView(tripItem: trip)
         .modelContainer(container)
 }

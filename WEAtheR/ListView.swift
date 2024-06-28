@@ -30,30 +30,44 @@ struct ListView: View {
                 Text("Quantity")
                     .font(.headline)
             }
-            .padding()
+            .padding(.leading, 20.0)
+            .padding(.trailing, 1.0)
+            .padding(.vertical)
             List {
                 ForEach(tripItem.listItems) { listItem in
-                    VStack(spacing: 0) {
-                        HStack {
-                            Button(action: {
-                                toggleChecked(listItem: listItem)
-                            }) {
-                                if (listItem.isChecked) {
-                                    Image(systemName: "checkmark.square")
-                                } else {
-                                    Image(systemName: "square")
-                                }
+                    HStack {
+                        Button(action: {
+                            toggleChecked(listItem: listItem)
+                        }) {
+                            if (listItem.isChecked) {
+                                Image(systemName: "checkmark.square")
+                                    .foregroundStyle(Color("grey"))
+                            } else {
+                                Image(systemName: "square")
                             }
+                        }
+                        if (listItem.isChecked) {
                             Text(listItem.name)
-                            Spacer()
-                            Rectangle()
-                                .fill(Color.gray)
-                                .frame(width: 1)
+                                .strikethrough()
+                                .foregroundStyle(Color("grey"))
+                        } else {
+                            Text(listItem.name)
+                        }
+                        Spacer()
+                        Rectangle()
+                            .fill(Color("light grey"))
+                            .frame(width: 1)
+                        Spacer()
+                            .frame(width: 20.0)
+                        if (listItem.isChecked) {
+                            Text("\(listItem.quantity)")
+                                .strikethrough()
+                                .foregroundStyle(Color("grey"))
+                        } else {
                             Text("\(listItem.quantity)")
                         }
-                        .padding(.vertical, 8)
-                        Divider().background(Color.gray)
                     }
+                    .padding(.vertical, 8)
                 }
                 .onDelete(perform: deleteItems)
             }
